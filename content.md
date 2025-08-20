@@ -70,12 +70,13 @@ farewell = 'Goodbye!'
 <!-- TODO: use .concat method first, syntax sugar later -->
 A key characteristic of strings is that they are treated as text, not numerical values; for instance, the string `"1"` is different from the number `1`, and adding two strings like `"1" + "2"` results in the concatenated string `"12"` rather than the number `3`.
 
-Strings can be combined with `+` or `<<`. This is called *concatenation*.
+Strings can be combined with `concat`, `+`, or `<<`. This is called *concatenation*.
 
 ```ruby
 first = "Hello"
 second = "World"
 
+puts first.concat(" ", second)
 puts first + " " + second
 puts first << " " << second
 ```
