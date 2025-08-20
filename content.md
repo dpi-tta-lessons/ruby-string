@@ -47,6 +47,7 @@ pp "hello"
 pp "123"
 pp ":)"
 ```
+{: .repl }
 
 <aside class="tip">
   Strings are text, not numbers. The string <code>"1"</code> is different from the number <code>1</code>.
