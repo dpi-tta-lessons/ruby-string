@@ -1,35 +1,3 @@
-
-
-<!-- computers think in 1s and 0s, humans think more using written word -->
-
-<!-- TODO: history of chars (under the hood), string, ascii, hex, octal, unicod (utf-8) 
-
-"test".encoding
-
-https://www.ascii-code.com/
--->
-
-<!-- TODO: slices [] -->
-<!-- TODO: casing -->
-<!-- TODO: chomp -->
-<!-- TODO: gets -->
-<!-- TODO: concatenation (concat, +) << -->
-<!-- TODO: interpolation -->
-<!-- TODO: substitution methods (gsub / regex) -->
-<!-- TODO: multiplication / addition -->
-<!-- TODO: strip -->
-<!-- TODO: chars -->
-<!-- TODO: length -->
-<!-- TODO: reverse -->
-
-<!-- TODO: comparison .eql? == -->
-
-<!-- TODO: mutable / immutable (freeze) -->
-
-<!-- syntax sugar ==, [], << etc. -->
-
-<!-- TODO: https://ruby-doc.org/3.4.1/String.html -->
-
 # Ruby String
 
 Go beyond "Hello, world" and unlock the full power of Ruby's String class.
@@ -50,8 +18,6 @@ pp "123"
 pp ":)"
 ```
 {: .repl }
-
-<!-- TODO: encoding / ascii -->
 
 ## 1. Creating Strings
 
@@ -219,6 +185,15 @@ pp word.length      # 5
 ```
 {: .repl }
 
+### chars
+
+Convert the string into an array of characters. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-chars)
+
+```ruby
+word = "hello"
+pp word.chars      # ["h", "e", "l", "l", "o"]
+```
+
 ### Ruby Convention on `!` Operator Methods
 
 In Ruby, the exclamation mark (!) is a naming convention used for methods that perform a destructive operation or have side effects, meaning they alter the object's state or perform a potentially dangerous action.
@@ -289,12 +264,14 @@ Regex can feel abstract until you test it. These tools let you write regex and i
 
 ## 8. Character Codes and Encoding
 
+<!-- computers think in 1s and 0s, humans think more using written word -->
+
 Under the hood, strings are sequences of bytes with an encoding (UTF-8 by default). Every character has an underlying integer value. See [ascii-code.com](https://www.ascii-code.com/) for a ascii code chart.
 
 ```ruby
-puts "Ruby".encoding    # UTF-8
-puts "A".ord            # 65 (ASCII code for 'A')
-puts 65.chr             # "A"
+pp "Ruby".encoding    # UTF-8
+pp "A".ord            # 65 (ASCII code for 'A')
+pp 65.chr             # "A"
 ```
 {: .repl }
 
@@ -305,11 +282,11 @@ Strings in Ruby are *mutable* (you can change them).
 ```ruby
 s = "Hi"
 s << " there"
-puts s   # "Hi there"
+pp s   # "Hi there"
 ```
 {: .repl }
 
-You can make a string *immutable* (you can't change it) using the `freeze` method.
+You can make a string *immutable* (you can't change it) using the `freeze` method. This can be helpful for data integrity, ensuring we don't accidentally change string values we shouldn't.
 
 ```ruby
 name = "Bob".freeze
@@ -317,53 +294,68 @@ name << "by"   # Raises FrozenError
 ```
 {: .repl }
 
-<!-- ## Beware the Bang (!) Operator
+## 10. String Comparison
+
+Use `String#eql?` to compare 2 strings for length and content. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-eql-3F)
+
+```ruby
+pp "apple".eql?("Apple")    # false
+pp "apple".eql?("apple")    # true
+
+# Each char has a corresponding integer value on the ascii chart
+pp "a" < "b"                # true (alphabetical)
+```
+{: .repl }
+
+### Ruby Convention on ? Operator Methods
+
+In Ruby, the question mark (?) at the end of a method name is a convention that signals the method will return a Boolean value (true or false). These are sometimes called predicate methods, because they answer a yes/no question about the object.
+
+For example, `String#empty?` checks if a string has no characters, while `String#start_with?` checks if a string begins with a given substring.
+
+```ruby
+word = "hello"
+
+pp word.empty?             # => false
+pp word.start_with?("he")  # => true
+pp word.include?("z")      # => false
+```
+{: .repl }
 
 <aside class="tip">
-  In Ruby, methods with <code>!</code> usually modify the string in place.
-  For example: - `"hello".upcase` returns a new string `"HELLO"` - `"hello".upcase!` permanently changes the string to `"HELLO"`
-</aside> 
-
--->
-
-## 10. Syntax Sugar
-<!-- TODO: syntax sugar section at end -->
-<!-- 
-<aside class="tip">
-  <strong>Syntax Sugar</strong>: We can also use the "shovel operator" <code><<</code> as a shorthand for the <code>concat</code> method.
+  Ruby doesn’t force you to use <code>?</code> for Boolean-returning methods, but it’s a strong convention in the community. When you see a method ending in <code>?</code>, you can safely assume it will give you <code>true</code> or <code>false</code>.
 </aside>
--->
 
-Ruby gives shortcuts for common string operations:
+## 11. Syntax Sugar
 
-<!-- shovel -->
-<< → append
+*Syntax sugar* is a programming term for shortcuts in the language, ways of writing code that are more concise and pleasant without adding new capabilities. Ruby strings have several operators that act as shorthand for existing methods.
 
-<!-- square brackets -->
-[] → slice
+### << (shovel operator)
 
-<!-- equals -->
-== → compare
+Appends text to the end of a string. Equivalent to calling `String#concat`
 
-<!-- multiply -->
-* → repeat
+### [] (square brackets)
+
+Extracts a character or substring by index or range. Equivalent to calling `String#slice`.
+
+### == (equals)
+
+Checks if two strings are exactly the same. Equivalent to calling `String#eql?`.
 
 ```ruby
-puts "ha" * 3      # "hahaha"
-puts "test"[0..1]  # "te"
+pp "test"[0..1]         # => "te"       (same as "test".slice(0..1))
+
+greeting = "Hi"
+greeting << "!"         
+pp greeting             # => "Hi!"      (same as greeting.concat("!"))
+
+pp "apple" == "apple"   # => true       (same as "apple".eql?("apple"))
 ```
 {: .repl }
 
-## 11. String Comparison
-
-```ruby
-puts "apple" == "apple"   # true
-puts "apple".eql?("Apple") # false
-puts "a" < "b"            # true (alphabetical)
-```
-{: .repl }
-
-Practice Challenge
+<aside class="tip">
+  <strong>Tip:</strong> These operators are just "sweetened" syntax. They don't add new powers. Under the hood, Ruby calls the regular string methods. Once you understand the method form, the sugar makes your code shorter and friendlier to read.
+</aside>
 
 ## Wrap-Up
 
@@ -410,5 +402,3 @@ In this project, you will write Ruby programs that leverage these string methods
 ## References
 
 - [Ruby Docs: String](https://ruby-doc.org/3.4.1/String.html)
-
-<!-- TODO: add instructions to read the docs -->
