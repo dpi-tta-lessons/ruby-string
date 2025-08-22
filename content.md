@@ -181,6 +181,7 @@ Convert the string into an array of characters. [docs](https://ruby-doc.org/3.4.
 word = "hello"
 pp word.chars      # ["h", "e", "l", "l", "o"]
 ```
+{: .repl }
 
 ### Ruby Convention on `!` Operator Methods
 
