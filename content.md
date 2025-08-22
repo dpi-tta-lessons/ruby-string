@@ -49,9 +49,7 @@ pp ":)"
 ```
 {: .repl }
 
-<aside class="tip">
-  Strings are text, not numbers. The string <code>"1"</code> is different from the number <code>1</code>.
-</aside>
+<!-- TODO: encoding / ascii -->
 
 ## 1. Creating Strings
 
@@ -59,30 +57,41 @@ You can create strings with double quotes (`"`) or single quotes (`'`).
 
 ```ruby
 greeting = "Hello, world!"
+pp greeting
+
 farewell = 'Goodbye!'
+pp farewell
 ```
 {: .repl }
 
-<!-- TODO: String.new ??? -->
+## 2. Combining Strings
 
-## 2. Concatenation and Interpolation
+### Concatenation
 
-<!-- TODO: use .concat method first, syntax sugar later -->
-A key characteristic of strings is that they are treated as text, not numerical values; for instance, the string `"1"` is different from the number `1`, and adding two strings like `"1" + "2"` results in the concatenated string `"12"` rather than the number `3`.
-
-Strings can be combined with `concat`, `+`, or `<<`. This is called *concatenation*.
+Strings can be combined with the `.concat` method, this is called *concatenation*. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-concat)
 
 ```ruby
 first = "Hello"
 second = "World"
+first.concat(" ", second)
 
-puts first.concat(" ", second)
-puts first + " " + second
-puts first << " " << second
+pp first
 ```
 {: .repl }
 
-*Interpolation* lets you insert variables directly inside double-quoted (`""`) strings. Notice in this example how we use the hash and curly braces inject the name variable into the string.
+Use `+` to concatenate strings without changing (mutating) the receiver. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-2B)
+
+```ruby
+first = "Hello"
+second = "World"
+pp first + " " + second
+pp first
+```
+{: .repl }
+
+### Interpolation
+
+*Interpolation* lets you insert variables directly inside double-quoted (`""`) strings. Notice in this example how we use the hash symbol (`#`) and curly braces (`{}`) to inject the name variable into the string.
 
 ```ruby
 name = "Ruby"
@@ -94,9 +103,25 @@ puts "Hello, #{name}!"
   <strong>Note:</strong> Interpolation works only with double quotes <code>"</code>, not single quotes <code>'</code>.
 </aside>
 
-## 3. User Input
+## 3. String Math
 
-Ruby's `gets` method reads user input.
+A key characteristic of strings is they are treated as text, not numerical values; for instance, the string `"1"` is different from the number `1`, and adding two strings like `"1" + "2"` results in the concatenated string `"12"` rather than the number `3`.
+
+```ruby
+pp "1" + "2"
+```
+{: .repl }
+
+Use `*` to make copies of a string. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-2A)
+
+```ruby
+pp "hello" * 3
+```
+{: .repl }
+
+## 4. User Input
+
+Ruby's `gets` method reads user input. [docs](https://ruby-doc.org/3.4.1/exts/stringio/StringIO.html#method-i-gets)
 
 <!-- FIXME: this wont work in online repl. or add screenshot video -->
 ```ruby
@@ -124,7 +149,11 @@ puts "Hello, #{name}!"
 Hello, Alice!
 ```
 
-## 4. Common String Methods
+<aside class="tip">
+  Combining <code>gets</code> and <code>chomp</code> methods happense so frequently that <code>gets</code> allows you to pass an argument to automatically chomp the input. <code>gets(chomp: true)</code> will remove the extra newline for you.
+</aside>
+
+## 5. Common String Methods
 
 ```ruby
 word = " hello "
@@ -138,9 +167,9 @@ puts word.length      # 7
 ```
 {: .repl }
 
-## 5. Indexing and Slices
+## 6. Indexing and Slices
 
-Strings work like lists of characters. 
+Strings work like lists of characters.
 
 ![array of charaters](https://upload.wikimedia.org/wikipedia/commons/6/6b/String_example.png)
 
@@ -156,7 +185,7 @@ puts text[-1]    # "y"
 ```
 {: .repl }
 
-## 6. Substitution with `gsub` and regular expressions
+## 7. Substitution with `gsub` and regular expressions
 
 `.gsub` replaces text. With regular expressions (regex for short), it becomes even more powerful.
 
@@ -182,7 +211,7 @@ puts phrase.gsub(/cats?/, "birds") # Replace "cat" or "cats"
 ```
 {: .repl }
 
-## 7. Character Codes and Encoding
+## 8. Character Codes and Encoding
 
 <!-- TODO: add details on ascii, utf-8, etc. -->
 Strings are sequences of bytes with an encoding (UTF-8 by default).
@@ -194,7 +223,7 @@ puts 65.chr             # "A"
 ```
 {: .repl }
 
-## 8. Mutability and `freeze`
+## 9. Mutability and `freeze`
 
 Strings in Ruby are *mutable* (you can change them).
 
@@ -222,7 +251,13 @@ name << "by"   # Raises FrozenError
 
 -->
 
-## 9. Syntax Sugar
+## 10. Syntax Sugar
+<!-- TODO: syntax sugar section at end -->
+<!-- 
+<aside class="tip">
+  <strong>Syntax Sugar</strong>: We can also use the "shovel operator" <code><<</code> as a shorthand for the <code>concat</code> method.
+</aside>
+-->
 
 Ruby gives shortcuts for common string operations:
 
@@ -244,7 +279,7 @@ puts "test"[0..1]  # "te"
 ```
 {: .repl }
 
-## 10. String Comparison
+## 11. String Comparison
 
 ```ruby
 puts "apple" == "apple"   # true
@@ -300,3 +335,5 @@ In this project, you will write Ruby programs that leverage these string methods
 ## References
 
 - [Ruby Docs: String](https://ruby-doc.org/3.4.1/String.html)
+
+<!-- TODO: add instructions to read the docs -->
