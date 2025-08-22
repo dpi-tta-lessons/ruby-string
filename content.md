@@ -8,6 +8,10 @@ In this lesson, you'll learn how to work with text (strings) in Ruby: creating t
 
 ## What is a String?
 
+<!-- TODO: add short history on how computers speak in binary numbers (electrical pulses) -->
+
+<!-- TODO: maybe move encoding/ascii piece here? -->
+
 In programming, a string is a data type used to represent *text* rather than *numbers*. It is a sequence of characters that can include letters, numbers, symbols, and spaces, and must be enclosed in quotation marks (`"` or `'`).
 
 For example, `"hello"`, `"123"`, and `":)"` are all valid strings.
@@ -91,20 +95,17 @@ pp "hello" * 3
 
 Ruby's `gets` method reads user input. [docs](https://ruby-doc.org/3.4.1/exts/stringio/StringIO.html#method-i-gets)
 
-<!-- FIXME: this wont work in online repl. or add screenshot video -->
-```ruby
-print "What is your name? "
-name = gets
-puts "Hello, #{name}!"
-```
+### `gets`
 
-```ruby
-# Output (when user enters Alice):
-Hello, Alice\n
-!
-```
+<video src="assets/gets.mp4" autoplay loop muted playsinline></video>
 
-When using the `gets` method in Ruby to read user input, the newline character (`\n`) is included at the end of the string because it is part of the input stream that the user generates when pressing the Enter key. This newline character is not part of the text the user typed but is added by the terminal when the user finishes their input. As a result, if you try to compare the string directly with another string, the comparison might fail due to the presence of this extra `\n` character. The best way to remove this extra newline character is to use the `chomp` method.
+### `gets` + `chomp`
+
+<video src="assets/gets+chomp.mp4" autoplay loop muted playsinline></video>
+
+<aside class="tip">
+  When using the <code>gets</code> method in Ruby to read user input, the newline character (<code>\n</code>) is included at the end of the string because it is part of the input stream that the user generates when pressing the Enter key. This newline character is not part of the text the user typed but is added by the terminal when the user finishes their input. As a result, if you try to compare the string directly with another string, the comparison might fail due to the presence of this extra <code>\n</code> character. The best way to remove this extra newline character is to use the `chomp` method.
+</aside>
 
 ```ruby
 print "What is your name? "
