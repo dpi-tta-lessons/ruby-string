@@ -228,7 +228,7 @@ pp phrase.gsub("cats", "dogs")
 ```
 {: .repl }
 
-With regular expressions (regex for short), it becomes even more powerful. Regular expressions are declared inside forward slashes (`/`). Here are some example regular expressions.
+With regular expressions (regex for short), `gsub` becomes even more powerful. Regular expressions are declared inside forward slashes (`/`). Here are some example regular expressions.
 
 ```ruby
 phrase = "I have 3 cats."
@@ -236,8 +236,8 @@ phrase = "I have 3 cats."
 
 pp phrase.gsub(/\d/, "#")          # Replace digits
 pp phrase.gsub(/cats?/, "birds")   # Replace "cat" or "cats"
-pp phrase.gsub(/[aeiou]/, '*')     # Replace vowels with *
-pp phrase.gsub(/^[aeiou]/, '*')    # Replace non-vowels with *
+pp phrase.gsub(/[aeiou]/i, '*')     # Replace vowels with * (ignoring case)
+pp phrase.gsub(/[^aeiou]/i, '*')    # Replace non-vowels with * (ignoring case)
 ```
 {: .repl }
 
@@ -252,7 +252,7 @@ Regex can feel abstract until you test it. These tools let you write regex and i
 - [RegexOne](https://regexone.com/)
 
 ## 8. Character Codes and Encoding
-
+<!-- TODO: move this to intro -->
 <!-- computers think in 1s and 0s, humans think more using written word -->
 
 Under the hood, strings are sequences of bytes with an encoding (UTF-8 by default). Every character has an underlying integer value. See [ascii-code.com](https://www.ascii-code.com/) for a ascii code chart.
@@ -298,7 +298,7 @@ pp "a" < "b"                # true (alphabetical)
 
 ### Ruby Convention on ? Operator Methods
 
-In Ruby, the question mark (?) at the end of a method name is a convention that signals the method will return a Boolean value (true or false). These are sometimes called predicate methods, because they answer a yes/no question about the object.
+In Ruby, the question mark (?) at the end of a method name is a convention that signals the method will return a Boolean value (true or false). These are sometimes called *predicate methods*, because they answer a yes/no question about the object.
 
 For example, `String#empty?` checks if a string has no characters, while `String#start_with?` checks if a string begins with a given substring.
 
@@ -319,18 +319,32 @@ pp word.include?("z")      # => false
 
 *Syntax sugar* is a programming term for shortcuts in the language, ways of writing code that are more concise and pleasant without adding new capabilities. Ruby strings have several operators that act as shorthand for existing methods.
 
-- `<<`: (shovel operator) Appends text to the end of a string. Equivalent to calling `String#concat`
-- `[]`: (square brackets) Extracts a character or substring by index or range. Equivalent to calling `String#slice`.
-- `==`: (equals) Checks if two strings are exactly the same. Equivalent to calling `String#eql?`.
+### `<<` (shovel operator)
+
+Appends text to the end of a string. Equivalent to calling `String#concat`.
 
 ```ruby
-pp "test"[0..1]         # => "te"       (same as "test".slice(0..1))
-
 greeting = "Hi"
-greeting << "!"         
-pp greeting             # => "Hi!"      (same as greeting.concat("!"))
+greeting << "!"        
+pp greeting
+```
+{: .repl }
 
-pp "apple" == "apple"   # => true       (same as "apple".eql?("apple"))
+### `[]` (square brackets)
+
+Extracts a character or substring by index or range. Equivalent to calling `String#slice`.
+
+```ruby
+pp "test"[0..1]
+```
+{: .repl }
+
+### `==` (equals)
+
+Checks if two strings are exactly the same. Equivalent to calling `String#eql?`.
+
+```ruby
+pp "apple" == "apple"
 ```
 {: .repl }
 
