@@ -8,11 +8,7 @@ In this lesson, you'll learn how to work with text (strings) in Ruby: creating t
 
 ## What is a String?
 
-<!-- TODO: add short history on how computers speak in binary numbers (electrical pulses) -->
-
-<!-- TODO: maybe move encoding/ascii piece here? -->
-
-In programming, a string is a data type used to represent *text* rather than *numbers*. It is a sequence of characters that can include letters, numbers, symbols, and spaces, and must be enclosed in quotation marks (`"` or `'`).
+Computers only understand numbers, stored as binary 1s and 0s. To represent letters and symbols, we map characters to numeric codes (like ASCII or Unicode). A **string** is a data type used to represent *text* rather than *numbers*. It is a sequence of characters that can include letters, numbers, symbols, and spaces, and must be enclosed in quotation marks (`"` or `'`).
 
 For example, `"hello"`, `"123"`, and `":)"` are all valid strings.
 
@@ -348,26 +344,50 @@ pp "apple" == "apple"
 ```
 {: .repl }
 
+<!-- TODO: more sugar
+
+* (multiply)
+String#*.
+
+```ruby
+pp "hello" * 2       # => "hellohello"
+```
+{: .repl }
+
+=~ (regex match)
+returns index of match or nil. Equivalent to String#match? / Regexp#match.
+
+```ruby
+pp "hello" =~ /ell/  # => 1 (found at index 1)
+```
+{: .repl }
+
+!~ (regex non-match)
+opposite of =~.
+
+```ruby
+pp "hello" !~ /z/    # => true (no match)
+```
+{: .repl }
+
+-->
+
 <aside class="tip">
   <strong>Tip:</strong> These operators are just "sweetened" syntax. They don't add new powers. Under the hood, Ruby calls the regular string methods. Once you understand the method form, the sugar makes your code shorter and friendlier to read.
 </aside>
-
-
-<!-- TODO: add more list items
 
 ## Wrap-Up
 
 You've learned:
 
 - How to create, concatenate, and interpolate strings
-- How to get input with `gets` and clean it with `chomp`
-- Common methods (`strip`, `upcase`, `reverse`, etc.)
-- String replacement with `gsub` and regex
-- Encodings, ASCII codes, and `ord`/`chr`
-- Mutability and immutability (freeze)
-- Ruby's convention for `!` methods 
-
--->
+- How to accept input with `gets` and remove newlines with `chomp`
+- Common methods (`strip`, `upcase`, `reverse`, `length`, etc.)
+- How to replace text with `gsub` and regular expressions
+- How strings are stored as encoded bytes, with ASCII/Unicode codes
+- The difference between mutable and immutable strings (`freeze`)
+- Ruby's conventions for `!` (destructive) and `?` (predicate) methods
+- Syntax sugar operators that make string operations concise
 
 ## Quiz
 
