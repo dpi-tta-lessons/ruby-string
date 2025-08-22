@@ -5,6 +5,8 @@
 <!-- TODO: history of chars (under the hood), string, ascii, hex, octal, unicod (utf-8) 
 
 "test".encoding
+
+https://www.ascii-code.com/
 -->
 
 <!-- TODO: slices [] -->
@@ -155,15 +157,80 @@ Hello, Alice!
 
 ## 5. Common String Methods
 
+There are a handful of common String methods that you should be familiar with. Don't worry about memorizing all these methods. (nobody has them all memorized) Get familiar with what is available and reach for these methods when the moment arises. Remember, you can always consult the [docs](https://ruby-doc.org/).
+
+### strip
+
+Remove leading and trailing whitespace. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-strip)
+
 ```ruby
 word = " hello "
+pp word.strip       # "hello"
+```
+{: .repl }
 
-puts word.strip       # "hello"
-puts word.upcase      # " HELLO "
-puts word.downcase    # " hello "
-puts word.capitalize  # " hello " → " hello "
-puts word.reverse     # " olleh "
-puts word.length      # 7
+### upcase
+
+Convert lowercase characters to uppercase. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-upcase)
+
+```ruby
+word = "hello"
+pp word.upcase      # "HELLO"
+```
+{: .repl }
+
+### downcase
+
+Convert uppercase characters to lowercase. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-downcase)
+
+```ruby
+word = "HELLO"
+pp word.downcase    # "hello"
+```
+{: .repl }
+
+### capitalize
+
+Convert the first character in a string to uppercase. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-capitalize)
+
+```ruby
+word = "hello"
+pp word.capitalize  # "Hello"
+```
+{: .repl }
+
+### reverse
+
+Reverse the order of characters in a string. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-reverse)
+
+```ruby
+word = "hello"
+pp word.reverse     # "olleh"
+```
+{: .repl }
+
+### length
+
+Get the count of characters in a string. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-length)
+
+```ruby
+word = "hello"
+pp word.length      # 5
+```
+{: .repl }
+
+### Ruby Convention on `!` Operator Methods
+
+In Ruby, the exclamation mark (!) is a naming convention used for methods that perform a destructive operation or have side effects, meaning they alter the object's state or perform a potentially dangerous action.
+
+For example, `String#upcase!` modifies the string in place, while `String#upcase` returns a new string with the uppercase version, leaving the original unchanged.
+
+```ruby
+word = "hello"
+pp word.upcase
+pp word
+pp word.upcase!
+pp word
 ```
 {: .repl }
 
