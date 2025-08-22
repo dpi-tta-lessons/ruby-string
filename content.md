@@ -107,17 +107,6 @@ Ruby's `gets` method reads user input. [docs](https://ruby-doc.org/3.4.1/exts/st
   When using the <code>gets</code> method in Ruby to read user input, the newline character (<code>\n</code>) is included at the end of the string because it is part of the input stream that the user generates when pressing the Enter key. This newline character is not part of the text the user typed but is added by the terminal when the user finishes their input. As a result, if you try to compare the string directly with another string, the comparison might fail due to the presence of this extra <code>\n</code> character. The best way to remove this extra newline character is to use the `chomp` method.
 </aside>
 
-```ruby
-print "What is your name? "
-name = gets.chomp
-puts "Hello, #{name}!"
-```
-
-```ruby
-# Output (when user enters Alice):
-Hello, Alice!
-```
-
 <aside class="tip">
   Combining <code>gets</code> and <code>chomp</code> methods happense so frequently that <code>gets</code> allows you to pass an argument to automatically chomp the input. <code>gets(chomp: true)</code> will remove the extra newline for you.
 </aside>
