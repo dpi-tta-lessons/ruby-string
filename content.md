@@ -330,17 +330,9 @@ pp word.include?("z")      # => false
 
 *Syntax sugar* is a programming term for shortcuts in the language, ways of writing code that are more concise and pleasant without adding new capabilities. Ruby strings have several operators that act as shorthand for existing methods.
 
-### `<<` (shovel operator)
-
-Appends text to the end of a string. Equivalent to calling `String#concat`
-
-### `[]` (square brackets)
-
-Extracts a character or substring by index or range. Equivalent to calling `String#slice`.
-
-### `==` (equals)
-
-Checks if two strings are exactly the same. Equivalent to calling `String#eql?`.
+- `<<`: (shovel operator) Appends text to the end of a string. Equivalent to calling `String#concat`
+- `[]`: (square brackets) Extracts a character or substring by index or range. Equivalent to calling `String#slice`.
+- `==`: (equals) Checks if two strings are exactly the same. Equivalent to calling `String#eql?`.
 
 ```ruby
 pp "test"[0..1]         # => "te"       (same as "test".slice(0..1))
