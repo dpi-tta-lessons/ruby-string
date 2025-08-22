@@ -343,33 +343,32 @@ pp "apple" == "apple"
 ```
 {: .repl }
 
-<!-- TODO: more sugar
+### `*` (multiply)
 
-* (multiply)
-String#*.
+Returns a new string containing `n` copies. Equivalent to calling `String#*`. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-2A)
 
 ```ruby
 pp "hello" * 2       # => "hellohello"
 ```
 {: .repl }
 
-=~ (regex match)
-returns index of match or nil. Equivalent to String#match? / Regexp#match.
+### `=~` (regex match)
+
+Returns index of match or nil. Equivalent to `String#match?` / `Regexp#match`. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-3D~)
 
 ```ruby
 pp "hello" =~ /ell/  # => 1 (found at index 1)
 ```
 {: .repl }
 
-!~ (regex non-match)
-opposite of =~.
+### !~ (regex non-match)
+
+Opposite of `=~`.
 
 ```ruby
 pp "hello" !~ /z/    # => true (no match)
 ```
 {: .repl }
-
--->
 
 <aside class="tip">
   <strong>Tip:</strong> These operators are just "sweetened" syntax. They don't add new powers. Under the hood, Ruby calls the regular string methods. Once you understand the method form, the sugar makes your code shorter and friendlier to read.
