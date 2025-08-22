@@ -248,8 +248,6 @@ Regex can feel abstract until you test it. These tools let you write regex and i
 - [RegexOne](https://regexone.com/)
 
 ## 8. Character Codes and Encoding
-<!-- TODO: move this to intro -->
-<!-- computers think in 1s and 0s, humans think more using written word -->
 
 Under the hood, strings are sequences of bytes with an encoding (UTF-8 by default). Every character has an underlying integer value. See [ascii-code.com](https://www.ascii-code.com/) for a ascii code chart.
 
@@ -257,6 +255,7 @@ Under the hood, strings are sequences of bytes with an encoding (UTF-8 by defaul
 pp "Ruby".encoding    # UTF-8
 pp "A".ord            # 65 (ASCII code for 'A')
 pp 65.chr             # "A"
+pp "Ruby".sum         # 418
 ```
 {: .repl }
 
