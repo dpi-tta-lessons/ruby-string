@@ -70,7 +70,7 @@ pp farewell
 
 ### Concatenation
 
-Strings can be combined with the `.concat` method, this is called *concatenation*. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-concat)
+Strings can be combined with the `concat` method, this is called *concatenation*. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-concat)
 
 ```ruby
 first = "Hello"
@@ -253,38 +253,43 @@ pp text.slice(-1)    # "y"
 ```
 {: .repl }
 
-## 7. Substitution with `gsub` and regular expressions
+## 7. Substitution with `gsub` and Regular Expressions
 
-`.gsub` replaces text. With regular expressions (regex for short), it becomes even more powerful.
-
-<!-- TODO: more common regex examples -->
-
-<!-- 
-
-s = 'hello'
-s.sub(/[aeiou]/, '*') # => "h*llo"
-s.gsub(/[aeiou]/, '*') # => "h*ll*"
-s.gsub(/[aeiou]/, '')  # => "hll"
-s.sub(/ell/, 'al')     # => "halo"
-s.gsub(/xyzzy/, '*')   # => "hello"
-'THX1138'.gsub(/\d+/, '00') # => "THX00"
-
--->
+`String#gsub` replaces text. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-gsub)
 
 ```ruby
-phrase = "I have 3 cats and 2 dogs."
+phrase = "I have 3 cats."
 
-puts phrase.gsub(/\d/, "#")        # Replace digits
-puts phrase.gsub(/cats?/, "birds") # Replace "cat" or "cats"
+pp phrase.gsub("cats", "dogs")
 ```
 {: .repl }
 
+With regular expressions (regex for short), it becomes even more powerful. Regular expressions are declared inside forward slashes (`/`). Here are some example regular expressions.
+
+```ruby
+phrase = "I have 3 cats."
+
+
+pp phrase.gsub(/\d/, "#")          # Replace digits
+pp phrase.gsub(/cats?/, "birds")   # Replace "cat" or "cats"
+pp phrase.gsub(/[aeiou]/, '*')     # Replace vowels with *
+pp phrase.gsub(/^[aeiou]/, '*')    # Replace non-vowels with *
+```
+{: .repl }
+
+Regular expressions are notoriously unintuitive. It's worth learning a few of the basics as they show up a lot in coding interview questions. Be on the lookout for problems where a regular expression provides an elegant solution to a problem.
+
+### Interactive Regular Expression Tools
+
+Regex can feel abstract until you test it. These tools let you write regex and instantly see matches:
+
+- [RegExr](https://regexr.com/)
+- [Regex101](https://regex101.com/)
+- [RegexOne](https://regexone.com/)
+
 ## 8. Character Codes and Encoding
 
-<!-- https://www.ascii-code.com/ -->
-
-<!-- TODO: add details on ascii, utf-8, etc. -->
-Strings are sequences of bytes with an encoding (UTF-8 by default).
+Under the hood, strings are sequences of bytes with an encoding (UTF-8 by default). Every character has an underlying integer value. See [ascii-code.com](https://www.ascii-code.com/) for a ascii code chart.
 
 ```ruby
 puts "Ruby".encoding    # UTF-8
@@ -368,19 +373,19 @@ You've learned:
 - How to get input with `gets` and clean it with `chomp`
 - Common methods (`strip`, `upcase`, `reverse`, etc.)
 - String replacement with `gsub` and regex
-- Encodings, ASCII codes, and `.ord`/`.chr`
+- Encodings, ASCII codes, and `ord`/`chr`
 - Mutability and immutability (freeze)
 - Ruby's convention for `!` methods
 
 ## Quiz
 
-- Why should you use `.chomp` with `gets`?
+- Why should you use `chomp` with `gets`?
 - To remove the newline character at the end of input.
   - Correct! Otherwise, input will include `\n`.
 - To convert input into an integer.
-  - Not correct. `.chomp` doesn't change types.
+  - Not correct. `chomp` doesn't change types.
 - To force uppercase letters.
-  - Incorrect. That's `.upcase`.
+  - Incorrect. That's `upcase`.
 {: .choose_best #chomp title="Using Chomp" answer="1"}
 
 - Which of these operations are valid on Ruby strings?
