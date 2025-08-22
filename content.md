@@ -240,15 +240,16 @@ Strings work like lists of characters.
 
 ![array of charaters](https://upload.wikimedia.org/wikipedia/commons/6/6b/String_example.png)
 
-You can access single characters or slices using square brackets.
-<!-- TODO: how to do this without [] syntax sugar -->
-<!-- TOOD: note on ranges (1..2) -->
+You can access single characters or slices using `String#slice`. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-slice)
+
+`String#slice` method accepts either an integer or [range](https://docs.ruby-lang.org/en/master/Range.html) of integers.
+
 ```ruby
 text = "Ruby"
 
-puts text[0]     # "R"
-puts text[1..2]  # "ub"
-puts text[-1]    # "y"
+pp text.slice(0)     # "R"
+pp text.slice(1..2)  # "ub"
+pp text.slice(-1)    # "y"
 ```
 {: .repl }
 
@@ -279,6 +280,8 @@ puts phrase.gsub(/cats?/, "birds") # Replace "cat" or "cats"
 {: .repl }
 
 ## 8. Character Codes and Encoding
+
+<!-- https://www.ascii-code.com/ -->
 
 <!-- TODO: add details on ascii, utf-8, etc. -->
 Strings are sequences of bytes with an encoding (UTF-8 by default).
