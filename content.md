@@ -352,6 +352,9 @@ pp "apple" == "apple"
   <strong>Tip:</strong> These operators are just "sweetened" syntax. They don't add new powers. Under the hood, Ruby calls the regular string methods. Once you understand the method form, the sugar makes your code shorter and friendlier to read.
 </aside>
 
+
+<!-- TODO: add more list items
+
 ## Wrap-Up
 
 You've learned:
@@ -362,7 +365,9 @@ You've learned:
 - String replacement with `gsub` and regex
 - Encodings, ASCII codes, and `ord`/`chr`
 - Mutability and immutability (freeze)
-- Ruby's convention for `!` methods
+- Ruby's convention for `!` methods 
+
+-->
 
 ## Quiz
 
