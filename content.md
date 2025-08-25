@@ -8,7 +8,7 @@ In this lesson, you'll learn how to work with text (strings) in Ruby: creating t
 
 ## What is a String?
 
-Computers only understand numbers, stored as binary 1s and 0s. To represent letters and symbols, we map characters to numeric codes (like ASCII or Unicode). A **string** is a data type used to represent *text* rather than *numbers*. It is a sequence of characters that can include letters, numbers, symbols, and spaces, and must be enclosed in quotation marks (`"` or `'`).
+A **string** is a data type used to represent *text* rather than *numbers*. It is a sequence of characters that can include letters, numbers, symbols, and spaces, and must be enclosed in quotation marks (`"` or `'`).
 
 For example, `"hello"`, `"123"`, and `":)"` are all valid strings.
 
@@ -249,7 +249,9 @@ Regex can feel abstract until you test it. These tools let you write regex and i
 
 ## 8. Character Codes and Encoding
 
-Under the hood, strings are sequences of bytes with an encoding (UTF-8 by default). Every character has an underlying integer value. See [ascii-code.com](https://www.ascii-code.com/) for a ascii code chart.
+Computers only understand numbers, stored as binary 1s and 0s. To represent letters and symbols, we map characters to numeric codes. Under the hood, strings are sequences of bytes with an encoding (Around 98% of websites use UTF-8 [source](https://w3techs.com/technologies/details/en-utf8)). Every character has an underlying integer value. See [ascii-code.com](https://www.ascii-code.com/) for a ascii code chart.
+
+You can check the encoding used on a string with the `String#encoding` method. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-encoding)
 
 ```ruby
 pp "Ruby".encoding    # UTF-8
