@@ -115,7 +115,7 @@ Remove leading and trailing whitespace. [docs](https://ruby-doc.org/3.4.1/String
 
 ```ruby
 word = " hello "
-pp word.strip       # "hello"
+pp word.strip
 ```
 {: .repl }
 
@@ -125,7 +125,7 @@ Convert lowercase characters to uppercase. [docs](https://ruby-doc.org/3.4.1/Str
 
 ```ruby
 word = "hello"
-pp word.upcase      # "HELLO"
+pp word.upcase
 ```
 {: .repl }
 
@@ -135,7 +135,7 @@ Convert uppercase characters to lowercase. [docs](https://ruby-doc.org/3.4.1/Str
 
 ```ruby
 word = "HELLO"
-pp word.downcase    # "hello"
+pp word.downcase
 ```
 {: .repl }
 
@@ -145,7 +145,7 @@ Convert the first character in a string to uppercase. [docs](https://ruby-doc.or
 
 ```ruby
 word = "hello"
-pp word.capitalize  # "Hello"
+pp word.capitalize
 ```
 {: .repl }
 
@@ -175,14 +175,18 @@ Convert the string into an array of characters. [docs](https://ruby-doc.org/3.4.
 
 ```ruby
 word = "hello"
-pp word.chars      # ["h", "e", "l", "l", "o"]
+pp word.chars
 ```
 {: .repl }
+
+<aside class="tip">
+  We'll cover the Array class later on. For now, know they are used to store a list of items inside square brackets <code>[]</code>.
+</aside>
 
 ### Ruby Convention on `!` Operator Methods
 
 In Ruby, the exclamation mark (!) is a naming convention used for methods that perform a destructive operation or have side effects, meaning they alter the object's state or perform a potentially dangerous action.
-
+<!-- TODO: add convention on Class#method notation? -->
 For example, `String#upcase!` modifies the string in place, while `String#upcase` returns a new string with the uppercase version, leaving the original unchanged.
 
 ```ruby
@@ -207,9 +211,14 @@ You can access single characters or slices using `String#slice`. [docs](https://
 ```ruby
 text = "Ruby"
 
-pp text.slice(0)     # "R"
-pp text.slice(1..2)  # "ub"
-pp text.slice(-1)    # "y"
+# "R"
+pp text.slice(0)
+
+# "ub"
+pp text.slice(1..2)
+
+# "y"
+pp text.slice(-1)
 ```
 {: .repl }
 
@@ -229,11 +238,17 @@ With regular expressions (regex for short), `gsub` becomes even more powerful. R
 ```ruby
 phrase = "I have 3 cats."
 
+# Replace digits
+pp phrase.gsub(/\d/, "#")
 
-pp phrase.gsub(/\d/, "#")          # Replace digits
-pp phrase.gsub(/cats?/, "birds")   # Replace "cat" or "cats"
-pp phrase.gsub(/[aeiou]/i, '*')     # Replace vowels with * (ignoring case)
-pp phrase.gsub(/[^aeiou]/i, '*')    # Replace non-vowels with * (ignoring case)
+# Replace "cat" or "cats"
+pp phrase.gsub(/cats?/, "birds")
+
+# Replace vowels with * (ignoring case)
+pp phrase.gsub(/[aeiou]/i, '*')
+
+# Replace non-vowels with * (ignoring case)
+pp phrase.gsub(/[^aeiou]/i, '*')
 ```
 {: .repl }
 
@@ -254,12 +269,23 @@ Computers only understand numbers, stored as binary 1s and 0s. To represent lett
 You can check the encoding used on a string with the `String#encoding` method. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-encoding)
 
 ```ruby
-pp "Ruby".encoding    # UTF-8
-pp "A".ord            # 65 (ASCII code for 'A')
-pp 65.chr             # "A"
-pp "Ruby".sum         # 418
+# UTF-8
+pp "Ruby".encoding
+
+# 65 (ASCII code for 'A')
+pp "A".ord
+
+# "A"
+pp 65.chr
+
+# 418
+pp "Ruby".sum
 ```
 {: .repl }
+
+<aside class="tip">
+  <strong>Try it out</strong>: Use the <code>String#sum</code> method to see the sum of ASCII codes making up your name.
+</aside>
 
 ## 9. Mutability and `freeze`
 
@@ -268,7 +294,9 @@ Strings in Ruby are *mutable* (you can change them).
 ```ruby
 s = "Hi"
 s << " there"
-pp s   # "Hi there"
+
+# "Hi there"
+pp s
 ```
 {: .repl }
 
@@ -276,7 +304,9 @@ You can make a string *immutable* (you can't change it) using the `freeze` metho
 
 ```ruby
 name = "Bob".freeze
-name << "by"   # Raises FrozenError
+
+# Raises FrozenError
+name << "by"
 ```
 {: .repl }
 
@@ -285,11 +315,15 @@ name << "by"   # Raises FrozenError
 Use `String#eql?` to compare 2 strings for length and content. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-eql-3F)
 
 ```ruby
-pp "apple".eql?("Apple")    # false
-pp "apple".eql?("apple")    # true
+# false
+pp "apple".eql?("Apple")
+
+# true
+pp "apple".eql?("apple")
 
 # Each char has a corresponding integer value on the ascii chart
-pp "a" < "b"                # true (alphabetical)
+# true (alphabetical)
+pp "a" < "b"       
 ```
 {: .repl }
 
@@ -302,9 +336,14 @@ For example, `String#empty?` checks if a string has no characters, while `String
 ```ruby
 word = "hello"
 
-pp word.empty?             # => false
-pp word.start_with?("he")  # => true
-pp word.include?("z")      # => false
+# false
+pp word.empty?
+
+# true
+pp word.start_with?("he")
+
+# false
+pp word.include?("z")
 ```
 {: .repl }
 
@@ -322,7 +361,8 @@ Appends text to the end of a string. Equivalent to calling `String#concat`.
 
 ```ruby
 greeting = "Hi"
-greeting << "!"        
+greeting << "!"  
+
 pp greeting
 ```
 {: .repl }
@@ -350,7 +390,8 @@ pp "apple" == "apple"
 Returns a new string containing `n` copies. Equivalent to calling `String#*`. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-2A)
 
 ```ruby
-pp "hello" * 2       # => "hellohello"
+# "hellohello"
+pp "hello" * 2
 ```
 {: .repl }
 
@@ -359,7 +400,8 @@ pp "hello" * 2       # => "hellohello"
 Returns index of match or nil. Equivalent to `String#match?` / `Regexp#match`. [docs](https://ruby-doc.org/3.4.1/String.html#method-i-3D~)
 
 ```ruby
-pp "hello" =~ /ell/  # => 1 (found at index 1)
+# 1 (found match at index 1)
+pp "hello" =~ /ell/
 ```
 {: .repl }
 
@@ -368,7 +410,8 @@ pp "hello" =~ /ell/  # => 1 (found at index 1)
 Opposite of `=~`.
 
 ```ruby
-pp "hello" !~ /z/    # => true (no match)
+# true (no match)
+pp "hello" !~ /z/
 ```
 {: .repl }
 
